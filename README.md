@@ -86,7 +86,7 @@ Make sure you have the following installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Abdulhamead22/TripSplit.git
+   git clone https://github.com/Abdulhamead22/Trip_App.git
    ```
 
 2. Navigate to the project directory:
@@ -132,4 +132,4 @@ This project was developed to practice and apply:
 
 ---
 
-*TripSplit — Share the trip, split the cost, enjoy the journey.*
+_TripSplit — Share the trip, split the cost, enjoy the journey._
