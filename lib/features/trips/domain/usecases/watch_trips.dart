@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_application_1/features/trips/domain/entities/trip.dart';
 import 'package:flutter_application_1/features/trips/domain/repositories/trip_repository.dart';
 

@@ -10,6 +10,4 @@ abstract class TripRepository {
   Future<void> updateTrip(Trip trip);
 
   Future<void> deleteTrip(String tripId);
-
-
 }

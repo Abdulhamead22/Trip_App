@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/features/expenses/domain/entities/expense.dart';
 
-
 class ExpenseModel extends Expense {
-
   const ExpenseModel({
     required super.id,
     required super.title,
@@ -14,16 +12,16 @@ class ExpenseModel extends Expense {
     required super.createdAt,
   });
   factory ExpenseModel.fromEntity(Expense expense) {
-  return ExpenseModel(
-    id: expense.id,
-    title: expense.title,
-    amount: expense.amount,
-    payments: expense.payments,
-    splitWith: expense.splitWith,
-    splitAmounts: expense.splitAmounts,
-    createdAt: expense.createdAt,
-  );
-}
+    return ExpenseModel(
+      id: expense.id,
+      title: expense.title,
+      amount: expense.amount,
+      payments: expense.payments,
+      splitWith: expense.splitWith,
+      splitAmounts: expense.splitAmounts,
+      createdAt: expense.createdAt,
+    );
+  }
 
   factory ExpenseModel.fromMap(
     String id,
@@ -35,8 +33,8 @@ class ExpenseModel extends Expense {
       map['payments'] ?? {},
     );
     final splitAmountsMap = Map<String, dynamic>.from(
-  map['splitAmounts'] ?? {},
-);
+      map['splitAmounts'] ?? {},
+    );
 
     return ExpenseModel(
       id: id,
@@ -51,14 +49,13 @@ class ExpenseModel extends Expense {
       splitWith: List<String>.from(
         map['splitWith'] ?? [],
       ),
-  splitAmounts: splitAmountsMap.map(
-  (key, value) => MapEntry(
-    key,
-    (value as num).toDouble(),
-  ),
-),
+      splitAmounts: splitAmountsMap.map(
+        (key, value) => MapEntry(
+          key,
+          (value as num).toDouble(),
+        ),
+      ),
       createdAt: timestamp?.toDate() ?? DateTime.now(),
-  
     );
   }
 

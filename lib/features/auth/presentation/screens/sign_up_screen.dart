@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/features/auth/presentation/screens/login_screen.dart';
 import 'package:get/get.dart';
@@ -67,8 +66,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
       if (_confirmPasswordController.text.isEmpty) {
         _confirmPasswordError = 'Please confirm your password';
-      } else if (_confirmPasswordController.text !=
-          _passwordController.text) {
+      } else if (_confirmPasswordController.text != _passwordController.text) {
         _confirmPasswordError = 'Passwords do not match';
       }
     });
@@ -146,7 +144,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 const SizedBox(height: 32),
-
                 const Text(
                   'Full name',
                   style: TextStyle(
@@ -166,9 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     }
                   },
                 ),
-
                 const SizedBox(height: 20),
-
                 const Text(
                   'Email address',
                   style: TextStyle(
@@ -189,9 +184,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     }
                   },
                 ),
-
                 const SizedBox(height: 20),
-
                 const Text(
                   'Password',
                   style: TextStyle(
@@ -228,9 +221,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     });
                   },
                 ),
-
                 const SizedBox(height: 20),
-
                 const Text(
                   'Confirm password',
                   style: TextStyle(
@@ -248,8 +239,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   suffixIcon: IconButton(
                     onPressed: () {
                       setState(() {
-                        _obscureConfirmPassword =
-                            !_obscureConfirmPassword;
+                        _obscureConfirmPassword = !_obscureConfirmPassword;
                       });
                     },
                     icon: Icon(
@@ -265,17 +255,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     }
                   },
                 ),
-
                 const SizedBox(height: 28),
-
                 Obx(
                   () => PrimaryButton(
                     text: _authController.isLoading.value
                         ? 'Creating account...'
                         : 'Create account',
-                    onPressed: _authController.isLoading.value
-                        ? null
-                        : _signUp,
+                    onPressed: _authController.isLoading.value ? null : _signUp,
                     height: 56,
                     textStyle: const TextStyle(
                       fontSize: 16,
@@ -283,9 +269,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
-
                 const SizedBox(height: 20),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

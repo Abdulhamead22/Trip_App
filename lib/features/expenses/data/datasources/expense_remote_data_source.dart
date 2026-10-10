@@ -11,10 +11,7 @@ class ExpenseRemoteDataSource {
   CollectionReference<Map<String, dynamic>> _expensesCollection(
     String tripId,
   ) {
-    return firestore
-        .collection('trips')
-        .doc(tripId)
-        .collection('expenses');
+    return firestore.collection('trips').doc(tripId).collection('expenses');
   }
 
   Stream<List<ExpenseModel>> watchExpenses(String tripId) {
@@ -46,9 +43,7 @@ class ExpenseRemoteDataSource {
     String tripId,
     ExpenseModel expense,
   ) async {
-    await _expensesCollection(tripId)
-        .doc(expense.id)
-        .update(
+    await _expensesCollection(tripId).doc(expense.id).update(
           expense.toMap(),
         );
   }
@@ -57,8 +52,6 @@ class ExpenseRemoteDataSource {
     String tripId,
     String expenseId,
   ) async {
-    await _expensesCollection(tripId)
-        .doc(expenseId)
-        .delete();
+    await _expensesCollection(tripId).doc(expenseId).delete();
   }
 }

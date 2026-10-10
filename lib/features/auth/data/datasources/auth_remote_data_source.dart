@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -17,53 +16,37 @@ class AuthRemoteDataSource {
     return firebaseAuth.authStateChanges();
   }
 
+  Future<UserCredential> signUp({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
+    final trimmedEmail = email.trim();
+    final trimmedName = name.trim();
 
-Future<UserCredential> signUp({
-  required String name,
-  required String email,
-  required String password,
-}) async {
-  final trimmedEmail = email.trim();
-  final trimmedName = name.trim();
+    late UserCredential credential;
 
-  final currentUser = firebaseAuth.currentUser;
-
-  late UserCredential credential;
-
-  if (currentUser != null && currentUser.isAnonymous) {
-    // Upgrade the guest account without changing its UID.
-    final emailCredential = EmailAuthProvider.credential(
-      email: trimmedEmail,
-      password: password,
-    );
-
-    credential = await currentUser.linkWithCredential(
-      emailCredential,
-    );
-  } else {
-    // Create a new account if there is no guest session.
     credential = await firebaseAuth.createUserWithEmailAndPassword(
       email: trimmedEmail,
       password: password,
     );
+
+    final user = credential.user;
+
+    if (user == null) {
+      throw Exception('Account creation failed.');
+    }
+
+    await user.updateDisplayName(trimmedName);
+
+    await firestore.collection('users').doc(user.uid).set({
+      'name': trimmedName,
+      'email': trimmedEmail,
+      'createdAt': FieldValue.serverTimestamp(),
+    }, SetOptions(merge: true));
+
+    return credential;
   }
-
-  final user = credential.user;
-
-  if (user == null) {
-    throw Exception('Account creation failed.');
-  }
-
-  await user.updateDisplayName(trimmedName);
-
-  await firestore.collection('users').doc(user.uid).set({
-    'name': trimmedName,
-    'email': trimmedEmail,
-    'createdAt': FieldValue.serverTimestamp(),
-  }, SetOptions(merge: true));
-
-  return credential;
-}
 
   Future<UserCredential> login({
     required String email,
@@ -75,10 +58,9 @@ Future<UserCredential> signUp({
     );
   }
 
-
-Future<UserCredential> signInAnonymously() {
-  return firebaseAuth.signInAnonymously();
-}
+  Future<UserCredential> signInAnonymously() {
+    return firebaseAuth.signInAnonymously();
+  }
 
   Future<void> logout() {
     return firebaseAuth.signOut();

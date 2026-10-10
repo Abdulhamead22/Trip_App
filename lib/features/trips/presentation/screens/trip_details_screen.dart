@@ -31,17 +31,16 @@ class _TripDetailsScreenState extends State<TripDetailsScreen> {
 
   int selectedTab = 0;
 
+  @override
+  void initState() {
+    super.initState();
 
-@override
-void initState() {
-  super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
 
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    if (!mounted) return;
-
-    controller.watchTrip(widget.trip.id);
-  });
-}
+      controller.watchTrip(widget.trip.id);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

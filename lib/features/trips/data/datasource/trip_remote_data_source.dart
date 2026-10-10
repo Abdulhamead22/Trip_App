@@ -1,4 +1,3 @@
-
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -20,8 +19,7 @@ class TripRemoteDataSource {
     required this.participantDataSource,
   });
 
-  String? get _currentUserId =>
-      FirebaseAuth.instance.currentUser?.uid;
+  String? get _currentUserId => FirebaseAuth.instance.currentUser?.uid;
 
   Stream<List<TripModel>> watchTrips() {
     final userId = _currentUserId;
@@ -49,7 +47,7 @@ class TripRemoteDataSource {
 
       if (subscriptions.containsKey(tripId)) {
         final currentTrip = tripsMap[tripId];
-latestTrip = trip;
+        latestTrip = trip;
         if (currentTrip != null) {
           tripsMap[tripId] = TripModel(
             id: trip.id,
@@ -71,19 +69,19 @@ latestTrip = trip;
       final expenses = <ExpenseModel>[];
       final tripSubscriptions = <StreamSubscription>[];
 
-    void updateTrip() {
-  tripsMap[tripId] = TripModel(
-    id: latestTrip.id,
-    name: latestTrip.name,
-    currency: latestTrip.currency,
-    ownerId: latestTrip.ownerId,
-    createdAt: latestTrip.createdAt,
-    participants: List.from(participants),
-    expenses: List.from(expenses),
-  );
+      void updateTrip() {
+        tripsMap[tripId] = TripModel(
+          id: latestTrip.id,
+          name: latestTrip.name,
+          currency: latestTrip.currency,
+          ownerId: latestTrip.ownerId,
+          createdAt: latestTrip.createdAt,
+          participants: List.from(participants),
+          expenses: List.from(expenses),
+        );
 
-  emitTrips();
-}
+        emitTrips();
+      }
 
       final participantsSubscription =
           participantDataSource.watchParticipants(tripId).listen(
@@ -130,8 +128,7 @@ latestTrip = trip;
         .snapshots()
         .listen(
       (snapshot) {
-        final currentTripIds =
-            snapshot.docs.map((doc) => doc.id).toSet();
+        final currentTripIds = snapshot.docs.map((doc) => doc.id).toSet();
 
         for (final tripId in tripsMap.keys.toList()) {
           if (!currentTripIds.contains(tripId)) {
@@ -243,8 +240,7 @@ latestTrip = trip;
       onError: controller.addError,
     );
 
-    final expensesSubscription =
-        expenseDataSource.watchExpenses(tripId).listen(
+    final expensesSubscription = expenseDataSource.watchExpenses(tripId).listen(
       (result) {
         expenses = result;
         emitTrip();
@@ -271,14 +267,12 @@ latestTrip = trip;
     final tripDoc = firestore.collection('trips').doc();
     final tripData = trip.toMap();
 
-    // Owner is always the currently authenticated user.
     tripData['ownerId'] = userId;
 
     await tripDoc.set(tripData);
 
     for (final participant in trip.participants) {
-      final participantDoc =
-          tripDoc.collection('participants').doc();
+      final participantDoc = tripDoc.collection('participants').doc();
 
       final participantModel = ParticipantModel(
         id: participantDoc.id,
@@ -296,7 +290,6 @@ latestTrip = trip;
       throw StateError('No authenticated user');
     }
 
-    // Do not allow this update to change the ownerId.
     await firestore.collection('trips').doc(trip.id).update({
       'name': trip.name,
       'currency': trip.currency,

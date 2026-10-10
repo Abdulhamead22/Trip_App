@@ -11,18 +11,13 @@ class ParticipantRemoteDataSource {
   CollectionReference<Map<String, dynamic>> _participantsCollection(
     String tripId,
   ) {
-    return firestore
-        .collection('trips')
-        .doc(tripId)
-        .collection('participants');
+    return firestore.collection('trips').doc(tripId).collection('participants');
   }
 
   Stream<List<ParticipantModel>> watchParticipants(
     String tripId,
   ) {
-    return _participantsCollection(tripId)
-        .snapshots()
-        .map((snapshot) {
+    return _participantsCollection(tripId).snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
         return ParticipantModel.fromMap(
           doc.id,
@@ -36,9 +31,7 @@ class ParticipantRemoteDataSource {
     String tripId,
     ParticipantModel participant,
   ) async {
-    await _participantsCollection(tripId)
-        .doc(participant.id)
-        .set(
+    await _participantsCollection(tripId).doc(participant.id).set(
           participant.toMap(),
         );
   }

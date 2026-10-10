@@ -31,14 +31,11 @@ class ExpenseBinding extends Bindings {
 
     Get.put<AddExpenseController>(controller);
     Get.put<ExpenseController>(
-  ExpenseController(
-    deleteExpenseUseCase: Get.find<DeleteExpenseUseCase>(),
-    calculateSettlementUseCase:
-        Get.find<CalculateSettlementUseCase>(),
-  ),
-  permanent: true,
-);
+      ExpenseController(
+        deleteExpenseUseCase: Get.find<DeleteExpenseUseCase>(),
+        calculateSettlementUseCase: Get.find<CalculateSettlementUseCase>(),
+      ),
+      permanent: true,
+    );
   }
-
-  
 }

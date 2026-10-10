@@ -1,4 +1,3 @@
-
 import 'package:flutter_application_1/features/auth/domain/entities/app_user.dart';
 
 abstract class AuthRepository {
@@ -14,7 +13,6 @@ abstract class AuthRepository {
     required String email,
     required String password,
   });
-
 
   Future<void> logout();
 

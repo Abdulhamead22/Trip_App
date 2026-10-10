@@ -1,4 +1,3 @@
-
 import 'package:flutter_application_1/features/participants/domain/entities/participant.dart';
 
 class ParticipantModel extends Participant {

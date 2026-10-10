@@ -52,7 +52,7 @@ class AuthBinding extends Bindings {
     Get.lazyPut(
       () => UpdateProfile(Get.find<AuthRepository>()),
     );
-    
+
     Get.put<AuthController>(
       AuthController(
         signUpUseCase: Get.find<SignUp>(),

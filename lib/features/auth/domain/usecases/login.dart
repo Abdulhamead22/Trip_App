@@ -2,17 +2,17 @@ import 'package:flutter_application_1/features/auth/domain/entities/app_user.dar
 import 'package:flutter_application_1/features/auth/domain/repositories/auth_repository.dart';
 
 class Login {
-final AuthRepository repository;
+  final AuthRepository repository;
 
-Login(this.repository);
+  Login(this.repository);
 
-Future<AppUser> call({
-required String email,
-required String password,
-}) {
-return repository.login(
-email: email,
-password: password,
-);
-}
+  Future<AppUser> call({
+    required String email,
+    required String password,
+  }) {
+    return repository.login(
+      email: email,
+      password: password,
+    );
+  }
 }

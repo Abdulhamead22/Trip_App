@@ -2,15 +2,15 @@ import 'package:flutter_application_1/features/auth/domain/entities/app_user.dar
 import 'package:flutter_application_1/features/auth/domain/repositories/auth_repository.dart';
 
 class UpdateProfile {
-final AuthRepository repository;
+  final AuthRepository repository;
 
-UpdateProfile(this.repository);
+  UpdateProfile(this.repository);
 
-Future<AppUser> call({
-required String name,
-}) {
-return repository.updateProfile(
-name: name,
-);
-}
+  Future<AppUser> call({
+    required String name,
+  }) {
+    return repository.updateProfile(
+      name: name,
+    );
+  }
 }

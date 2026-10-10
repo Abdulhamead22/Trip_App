@@ -19,7 +19,7 @@ Future<T?> customDialog<T>({
             },
             child: const Text('Cancel'),
           ),
-          //           //معناها انو اذا ضفت شي ضيفو جنب الزر
+          //معناها انو اذا ضفت شي ضيفو جنب الزر
 
           if (actions != null) ...actions,
         ],
