@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "970260012196",
+    "project_id": "trip-86243",
+    "storage_bucket": "trip-86243.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:970260012196:android:1e248c797e5cecc6999a31",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP3MeXiDtm82rtlyfxfQ5jXtEGynntSQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
